@@ -5,6 +5,9 @@
 class RRProcess {
 	private:
 		int pid;
+		void signal ( int sig ) {
+			kill( pid, sig );
+		}
 	public:
 		RRProcess () {
 			pid = fork();
@@ -13,6 +16,13 @@ class RRProcess {
 				while (1) {};
 			}
 		}
+		void exit () {
+			this -> signal( SIGSTOP );
+		}
+		int getPID () {
+			return this -> pid;
+		}
+
 };
 
 int main () {
