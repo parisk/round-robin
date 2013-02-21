@@ -26,4 +26,11 @@ class RRProcess {
 };
 
 int main () {
+	RRProcess* myProcess = new RRProcess();
+	std::cout	<< "Parent process "
+				<< getpid()
+				<< " created process "
+				<< myProcess -> getPID()
+				<< "\n";
+	myProcess -> exit();
 }
