@@ -68,6 +68,9 @@ class RRScheduler {
 						<< "\n\n";
 		};
 		void start () {
+			int p = fork();
+			if ( p )
+				return;
 			currentNode = queue;
 			std::cout	<< "Starting with process "
 						<< currentProcess() -> getPID()
@@ -92,4 +95,9 @@ int main () {
 	scheduler -> createNewProcess();
 	scheduler -> drawQueue();
 	scheduler -> start();
+	scheduler -> createNewProcess();
+	scheduler -> createNewProcess();
+	scheduler -> drawQueue();
+	while (1) {
+	}
 }
