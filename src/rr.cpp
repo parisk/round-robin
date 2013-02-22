@@ -60,7 +60,7 @@ class RRScheduler {
 		void activateNext () {
 		};
 		RRProcess* currentProcess () {
-			return currentNode;
+			return currentNode -> proc;
 		};
 };
 
