@@ -19,10 +19,23 @@ class RRScheduler {
 	
 	public:
 		RRScheduler() {
+			/*
+			queue -> proc = ( RRProcess* )malloc( sizeof RRProcess );
+			queue -> proc = NULL;
+			*/
 		};
 		void push ( RRProcess* proc ) {
+			/*
+			if ( queue -> proc == NULL )
+				queue -> proc = proc;
+			*/
 		};
-		void create () {
+		void createNewProcess () {
+			RRProcess* proc = new RRProcess();
+			std::cout	<< "Started process "
+						<< proc -> getPID()
+						<< "\n";
+			push( proc );
 		};
 		void activateNext () {
 		};
@@ -31,6 +44,7 @@ class RRScheduler {
 };
 
 int main () {
+	/*
 	RRProcess* myProcess = new RRProcess();
 	std::cout	<< "Parent process "
 				<< getpid()
@@ -43,4 +57,10 @@ int main () {
 	sleep(2);
 	myProcess -> exit();
 	std::cout	<< "\n";
+	*/
+	std::cout	<< "Main program started with PID "
+				<< getpid()
+				<< "\n";
+	RRScheduler* scheduler = new RRScheduler();
+	scheduler -> createNewProcess();
 }
