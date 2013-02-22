@@ -8,27 +8,26 @@
 
 #include "rr/process.cpp"
 
-typedef struct RRQueue {
-	RRProcess* proc;
-	RRQueue* next;
-} RRQueue;
+class RRNode {
+	public:
+		RRProcess* proc;
+		RRNode* next;
+};
 
 class RRScheduler {
 	private:
-		RRQueue* queue;
+		RRNode* queue;
 	
 	public:
 		RRScheduler() {
-			queue -> proc = ( RRProcess* )malloc( sizeof RRProcess );
-			/*
-			queue -> proc = NULL;
-			*/
+			queue = new RRNode;
 		};
 		void push ( RRProcess* proc ) {
 			/*
 			if ( queue -> proc == NULL )
 				queue -> proc = proc;
 			*/
+			queue -> proc = proc;
 		};
 		void createNewProcess () {
 			RRProcess* proc = new RRProcess();
