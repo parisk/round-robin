@@ -58,7 +58,22 @@ class RRScheduler {
 			std::cout << "End\n";
 		}
 		void activateNext () {
+			std::cout	<< "Halting process "
+						<< currentNode -> proc -> getPID()
+						<< "\n";
+			currentNode -> proc -> halt();
+			currentNode = ( currentNode -> next == NULL ) ? queue : currentNode -> next;
+			std::cout	<< "Activating process "
+						<< currentNode -> proc -> getPID()
+						<< "\n\n";
 		};
+		void start () {
+			currentNode = queue;
+			while ( 1 ) {
+				sleep( interval );
+				activateNext();
+			}
+		}
 		RRProcess* currentProcess () {
 			return currentNode -> proc;
 		};
@@ -73,4 +88,5 @@ int main () {
 	scheduler -> createNewProcess();
 	scheduler -> createNewProcess();
 	scheduler -> drawQueue();
+	scheduler -> start();
 }
