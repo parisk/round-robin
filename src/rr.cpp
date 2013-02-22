@@ -7,24 +7,29 @@
 #include <sys/resource.h>
 
 #include "rr/process.cpp"
+#include "rr/node.cpp"
 
-class RRNode {
-	public:
-		RRProcess* proc;
-		RRNode* next;
-};
 
 class RRScheduler {
 	private:
 		RRNode* queue;
 		RRNode* queueTail;
 		RRNode* queueCursor;
-	
-	public:
-		RRScheduler() {
+		RRNode* currentNode;
+		void initQueue() {
 			queue = new RRNode;
 			queueTail = queue;
+		}
+	
+	public:
+		int interval;
+		RRScheduler () {
+			initQueue();
+			interval = 2;
 		};
+		RRScheduler ( int intrv ) {
+			interval = intrv;
+		}
 		void push ( RRProcess* proc ) {
 			if ( queueTail -> proc == NULL )
 				queueTail -> proc = proc;
@@ -55,24 +60,11 @@ class RRScheduler {
 		void activateNext () {
 		};
 		RRProcess* currentProcess () {
+			return currentNode;
 		};
 };
 
 int main () {
-	/*
-	RRProcess* myProcess = new RRProcess();
-	std::cout	<< "Parent process "
-				<< getpid()
-				<< " created process "
-				<< myProcess -> getPID()
-				<< "\n";
-	myProcess -> halt();
-	sleep(2);
-	myProcess -> activate();
-	sleep(2);
-	myProcess -> exit();
-	std::cout	<< "\n";
-	*/
 	std::cout	<< "Main program started with PID "
 				<< getpid()
 				<< "\n";
