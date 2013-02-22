@@ -10,7 +10,7 @@
 
 typedef struct RRQueue {
 	RRProcess* proc;
-	RRProcess* next;
+	RRQueue* next;
 } RRQueue;
 
 class RRScheduler {
@@ -19,8 +19,8 @@ class RRScheduler {
 	
 	public:
 		RRScheduler() {
-			/*
 			queue -> proc = ( RRProcess* )malloc( sizeof RRProcess );
+			/*
 			queue -> proc = NULL;
 			*/
 		};
