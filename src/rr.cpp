@@ -8,6 +8,28 @@
 
 #include "rr/process.cpp"
 
+typedef struct RRQueue {
+	RRProcess* proc;
+	RRProcess* next;
+} RRQueue;
+
+class RRScheduler {
+	private:
+		RRQueue* queue;
+	
+	public:
+		RRScheduler() {
+		};
+		void push ( RRProcess* proc ) {
+		};
+		void create () {
+		};
+		void activateNext () {
+		};
+		RRProcess* currentProcess () {
+		};
+};
+
 int main () {
 	RRProcess* myProcess = new RRProcess();
 	std::cout	<< "Parent process "
