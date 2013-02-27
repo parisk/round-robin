@@ -69,9 +69,6 @@ class RRScheduler {
 		};
 		void start () {
 			currentNode = queue;
-			std::cout	<< "Starting with process "
-						<< currentProcess() -> getPID()
-						<< "\n\n";
 			while ( 1 ) {
 				sleep( interval );
 				activateNext();
